@@ -3,7 +3,7 @@ from blog.models import Post
 
 # Create your views here.
 
-def Posts(request):
+def posts(request):
     posts = Post.objects.all()
     context = {
         "posts": posts
@@ -13,4 +13,17 @@ def Posts(request):
         request,
         'blog/post.html',
         context=context,
+    )
+
+def post_detail(request, pk):
+    post = Post.objects.get(id=pk)
+    context = {
+        'post': post,
+        'published_recently': post.published_recently()
+    }
+
+    return render(
+    request,
+    'blog/post_detail.html',
+    context=context,
     )

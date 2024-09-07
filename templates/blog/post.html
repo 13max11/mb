@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bolg</title>
+    <title>blog</title>
     <style> /* я не знаю чому по іншому не працює */
         body {
             margin:0;
             margin-top: 20px;
             background-color: rgb(34, 34, 34);
+        }
+
+        .post>a {
+            color: #000 !important;
+            text-decoration: none
         }
 
         .blog>h1 {
@@ -43,9 +48,12 @@
         }
 
         .credit {
+            position:sticky;
             width: 100%;
             margin: 0;
             padding: 0;
+            margin-top: auto;
+            bottom: 0;
             text-align: center;
             background-color: rgb(22, 22, 22);
         }
@@ -65,11 +73,12 @@
         <h1>Мій блог!</h1>
         {% for post in posts %}
 
-            <div class="post">
-                <div class="post-title">
+        <div class="post">
+            <a href="{{post.id}}"><div class="post-title">
                     <h1>{{ post.title }}</h1>
+                    <p>{{ post.author.name }}</p>
                     <p>{{ post.published_date }}</p>
-                </div>
+                </div></a>
                 <p>{{ post.content }}</p>
             </div>
 
